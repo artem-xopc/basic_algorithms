@@ -1,0 +1,74 @@
+body {
+    max-width: 1024px;
+    margin: auto;
+    display: grid;
+    background-color: rgb(32, 36, 43);
+    color: rgb(171 178 191);
+    font-family: "Courier New", Courier, monospace;
+  }
+
+.code {
+    border: 1px solid gold;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    padding: 15px;
+    max-width: 1024px;
+    background-color: rgb(41, 40, 40);
+}
+
+h1, h3 {
+    text-align: center;
+}
+
+.grok {
+    color: gold;
+}
+
+p {
+    margin: 0;
+    text-indent: 25px;
+}
+
+.text__description {
+    margin-bottom: 15px;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: gold;
+}
+
+hr {
+    border: 1px solid rgb(32, 36, 43);
+    height: 3px;
+    width: 750px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+/* Стили для кода */
+
+.code__var {
+    color: rgb(66, 186, 190);
+}
+
+.code__word {
+    color: rgb(251, 5, 5);
+}
+
+.code__func {
+    color: rgb(71, 251, 5);
+}
+
+.code__item {
+    color: orange;
+}
+
+.code__comm {
+    color: rgb(129, 124, 124);
+}

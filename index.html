@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./index.css" rel="stylesheet">
+    <title>Xopc Algs</title>
+</head>
+
+<body>
+    <h1 class="grok">Грокаю Алгоритмы</h1>
+    <p>
+        Данную страницу я сделал для отображения собственного кода, но позже появилась идея сделать её доступным всем.
+        Здесь записаны основные алгоритмы, которые я изучил во время прочтения книги Грокаем алгоритмы, Адатьи Бхаргава, 
+        а также те алгоритмы, которые я изучал по видеороликам в YouTube.
+    </p>
+    <p>Для просмотра работы алгоритмов откройте консоль либо просмотрите код и попробуйте повторить.</p>
+    <p>Также в данном приложении есть алгоритмы, реализованные на Python.
+        Для просмотра кода перейдите на страницу репозитория, расположенного на <a href="/">GitHub</a></p>
+
+    <hr />
+
+    <h3 class="grok">Алгоритмы поиска</h3>
+
+    <div class="code">
+        <p>Линейный поиск</p>
+        <pre class="code__lin">
+        <code>
+            <span class="code__var">const</span> arr01 = [1, 2, 3, 5, 6, 9, 2, 6, 4, 10]
+            <span class="code__var">let</span> counter = 0
+
+            <span class="code__var">const</span> <span class="code__func">LinearSearch</span> = (<span class="code__item">arr01</span>, <span class="code__item">item</span>) => {
+                <span class="code__word">for</span> (i = 0; i < <span class="code__item">arr01</span>.length; i++) {
+                    counter += 1
+                    <span class="code__word">if</span> (<span class="code__item">arr01</span>[i] === <span class="code__item">item</span>) {
+                        <span class="code__word">return</span> i
+                    }
+                }
+                <span class="code__word">return</span> null
+            }
+
+            console.<span class="code__func">log</span>(<span class="code__func">LinearSearch</span>(arr01, 6), "It is a linear search");
+            console.<span class="code__func">log</span>("Counter = ", counter);
+        </code>
+        </pre>
+    </div>
+    
+    <p class="text__description">
+        Линейный поиск является наиболее медленным алгоритмом поиска. Его скорость исчесляется по "О-большому", которое ровно O(n), 
+        где n - количество итераций, требуемых для того, чтобы получить искомый элемент массива.
+    </p>
+    
+    <div class="code">
+        <p>Бинарный поиск</p>
+        <pre class="code__bin">
+        <code>
+            <span class="code__var">let</span> arr02 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+            <span class="code__var">let</span> count = 0
+
+            <span class="code__var">const</span> <span class="code__func">BinarySearch</span> = (<span class="code__item">arr02</span>, <span class="code__item">item</span>) => {
+                <span class="code__var">let</span> start = 0
+                <span class="code__var">let</span> end = <span class="code__item">arr02</span>.length 
+                <span class="code__var">let</span> middle;
+                <span class="code__var">let</span> found = false
+                <span class="code__var">let</span> position = -1
+                
+                <span class="code__word">while</span> (found <span class="code__word">===</span> false && start <= end) {
+                    middle = Math.<span class="code__func">floor</span>((start + end) / 2)
+                    count += 1
+                    
+                    <span class="code__word">if</span> (<span class="code__item">arr02</span>[middle] === <span class="code__item">item</span>) {
+                        found = true
+                        position = middle
+                        <span class="code__word">return</span> position
+                    }
+                    <span class="code__word">if</span> (<span class="code__item">item</span> < <span class="code__item">arr02</span>[middle]) {
+                        end = middle - 1
+                    } <span class="code__word">else</span> {
+                        start = middle + 1
+                    }
+            }
+            <span class="code__word">return</span> position
+        }
+
+        console.<span class="code__func">log</span>(BinarySearch(arr02, 6), 'It is a binary search')
+        console.<span class="code__func">log</span>("Counter = ", count)
+
+        </code>
+        </pre>
+    </div>
+
+    <p class="text__description">
+        Бинарный поиск является быстрым вариантом поиска, его скорость измеряется как O(log(n)n).
+    </p>
+
+    <hr />
+
+    <h3 class="grok">Алгоритмы сортировки</h3>
+
+    <div class="code">
+        <p>Простая сортировка</p>
+        <pre class="code__sort">
+            <code>
+                <span class="code__var">let</span> arr03 = [-45, -1, -23, 57, 2, 3, 6, 1, 10, 8, 99, 100, 56, 42, 30, 22, 23]
+                <span class="code__var">let</span> meter = 0
+
+                <span class="code__var">const</span> <span class="code__func">selectionSort</span> = (<span class="code__item">arr03</span>) => {
+                    <span class="code__word">for</span> (i = 0; i < <span class="code__item">arr03</span>.length; i++) {
+                        <span class="code__var">let</span> indexMin = i
+                        <span class="code__word">for</span> (j = i+1; j < <span class="code__item">arr03</span>.length; j++) {
+                            <span class="code__word">if</span> (<span class="code__item">arr03</span>[j] < <span class="code__item">arr03</span>[indexMin]) {
+                                indexMin = j
+                            }
+                            meter += 1
+                        }
+                        <span class="code__var">let</span> tmp = <span class="code__item">arr03</span>[i]
+                        <span class="code__item">arr03</span>[i] = <span class="code__item">arr03</span>[indexMin]
+                        <span class="code__item">arr03</span>[indexMin] = tmp
+                    }
+                    <span class="code__word">return</span> <span class="code__item">arr03</span> <span class="code__comm">// выведет отсортированный массив 
+                        [-45, -23, -1, 1, 2, 3, 6, 8, 10, 22, 23, 30, 42, 56, 57, 99, 100]</span>
+                }
+            </code>
+        </pre>
+    </div>
+
+    <div class="code">
+        <p>Пузырьковая сортировка</p>
+        <pre class="code__bsort">
+            <code>
+                <span class="code__comm">//массив arr04 аналогичен arr03</span>
+
+                <span class="code__var">const</span> <span class="code__func">bubbleSort</span> = (<span class="code__item">arr04</span>) => {
+                    <span class="code__word">for</span> (i = 0; i < <span class="code__item">arr04</span>.length; i++) {
+                        <span class="code__word">for</span> (j = 0; j < <span class="code__item">arr04</span>.length; j++) {
+                            <span class="code__word">if</span> (<span class="code__item">arr04</span>[j+1] < <span class="code__item">arr04</span>[j]) {
+                                <span class="code__var">let</span> tmp = <span class="code__item">arr04</span>[j]
+                                <span class="code__item">arr04</span>[j] = <span class="code__item">arr04</span>[j+1]
+                                <span class="code__item">arr04</span>[j+1] = tmp
+                            }
+                            counter04 += 1
+                        }  
+                    }
+                    <span class="code__word">return</span> <span class="code__item">arr04</span> <span class="code__comm">// выведет отсортированный массив 
+                        [-45, -23, -1, 1, 2, 3, 6, 8, 10, 22, 23, 30, 42, 56, 57, 99, 100]</span>
+                }
+            </code>
+        </pre>
+    </div>
+
+    <div class="code">
+        <p>Быстрая сортировка</p>
+        <pre class="code__">
+            <code></code>
+        </pre>
+    </div>
+
+    <div class="code">
+        <p></p>
+        <pre class="code__">
+            <code></code>
+        </pre>
+    </div>
+
+    <p>
+        Здесь заканчивается моё изучение базовых алгоритмов. Также рекомендую ознакомится с <a href="https://t.me/log_of_proger" target="_blank">XProger | Telegram channel</a>.
+    </p>
+
+
+
+
+    <script src="./JavaScript/01-linear_search.js"></script>
+    <script src="./JavaScript/02-binary_search.js"></script>
+    <script src="./JavaScript/03-selection-sort.js"></script>
+    <script src="./JavaScript/04-bubble-sort.js"></script>
+    <script src=""></script>
+    <script src=""></script>
+    <script src=""></script>
+    <script src=""></script>
+    <script src=""></script>
+    <script src=""></script>
+</body>
+
+</html>
